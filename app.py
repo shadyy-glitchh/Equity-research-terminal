@@ -189,8 +189,7 @@ THESIS_KEYWORDS = [
 ]
 # Top Institutional Header Bar
 st.markdown(
-f'<div class="terminal-header">EQUITY RESEARCH &amp; THESIS TERMINAL // LIVE FEED //
-{datetime.now().strftime("%d %b %Y %H:%M GMT").upper()}</div>',
+f'<div class="terminal-header">EQUITY RESEARCH &amp; THESIS TERMINAL // LIVE FEED //{datetime.now().strftime("%d %b %Y %H:%M GMT").upper()}</div>',
 
 unsafe_allow_html=True
 )
@@ -314,7 +313,7 @@ info = stock.info
 except Exception:
 pass
 cluster_buys = pd.DataFrame()
-unique_buyers = 0
+unique_buyers = 0 
 try:
 insiders = stock.insider_transactions
 
