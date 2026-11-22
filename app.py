@@ -159,7 +159,7 @@ st.markdown(
 )
 
 SEC_HEADERS = {
-    "User-Agent": "ShadrachResearch your.project.email@gmail.com",
+    "User-Agent": "ShadrachResearch shadrachaddotc@gmail.com",
     "Accept-Encoding": "gzip, deflate",
     "Host": "data.sec.gov"
 }
@@ -411,3 +411,4 @@ for tab, ticker in zip(tabs, tickers):
             st.markdown(
                 f'<div class="news-meta">NO CLUSTER BUY SIGNAL ({unique_buyers} DISTINCT BUYER(S) // THRESHOLD: {min_cluster_insiders}+). ROUTINE SINGLE-INSIDER ACTIVITY SUPPRESSED.</div>',
                 unsafe_allow_html=True
+            )
