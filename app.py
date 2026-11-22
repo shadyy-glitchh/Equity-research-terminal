@@ -412,7 +412,7 @@ for tab, ticker in zip(tabs, tickers):
                 f'<div class="news-meta">NO CLUSTER BUY SIGNAL ({unique_buyers} DISTINCT BUYER(S) // THRESHOLD: {min_cluster_insiders}+). ROUTINE SINGLE-INSIDER ACTIVITY SUPPRESSED.</div>',
                 unsafe_allow_html=True
             )
-                 st.markdown('<div class="section-label">05 // THESIS &amp; RESEARCH NOTE BUILDER</div>', unsafe_allow_html=True)
+        st.markdown('<div class="section-label">05 // THESIS &amp; RESEARCH NOTE BUILDER</div>', unsafe_allow_html=True)
         c1, c2, c3 = st.columns(3)
         action_choice = c1.selectbox("ACTION", ["WATCHLIST", "BUY (STARTER 5-7%)", "BUY (HIGH CONVICTION 8-10%)", "HOLD", "SELL / EXIT"], key=f"act_{ticker}")
         target_input = c2.text_input("MY TARGET PRICE ($)", placeholder="e.g. 45.00", key=f"tgt_{ticker}")
