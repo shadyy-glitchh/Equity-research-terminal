@@ -412,3 +412,44 @@ for tab, ticker in zip(tabs, tickers):
                 f'<div class="news-meta">NO CLUSTER BUY SIGNAL ({unique_buyers} DISTINCT BUYER(S) // THRESHOLD: {min_cluster_insiders}+). ROUTINE SINGLE-INSIDER ACTIVITY SUPPRESSED.</div>',
                 unsafe_allow_html=True
             )
+                 st.markdown('<div class="section-label">05 // THESIS &amp; RESEARCH NOTE BUILDER</div>', unsafe_allow_html=True)
+        c1, c2, c3 = st.columns(3)
+        action_choice = c1.selectbox("ACTION", ["WATCHLIST", "BUY (STARTER 5-7%)", "BUY (HIGH CONVICTION 8-10%)", "HOLD", "SELL / EXIT"], key=f"act_{ticker}")
+        target_input = c2.text_input("MY TARGET PRICE ($)", placeholder="e.g. 45.00", key=f"tgt_{ticker}")
+        conviction = c3.selectbox("CONVICTION", ["HIGH", "MODERATE", "LOW"], key=f"conv_{ticker}")
+
+        thesis_text = st.text_area(
+            "3-SENTENCE THESIS (1. BUSINESS SHIFT // 2. GROWTH & MARGINS // 3. VALUATION EDGE)",
+            height=110,
+            key=f"thesis_{ticker}"
+        )
+        col_bull, col_bear = st.columns(2)
+        bull_text = col_bull.text_area("BULL CASE & CATALYSTS", height=90, key=f"bull_{ticker}")
+        bear_text = col_bear.text_area("BEAR CASE // WHAT KILLS THE THESIS?", height=90, key=f"bear_{ticker}")
+
+        report_md = f"""# EQUITY RESEARCH NOTE: {company_name} [{ticker}]
+**Date:** {datetime.now().strftime("%d %b %Y")} | **Action:** {action_choice} | **Conviction:** {conviction} | **Target Price:** ${target_input or 'N/A'}
+
+## Live Snapshot at Entry
+- **Last Close:** ${price if price else 'N/A'}
+- **Forward P/E:** {f"{fwd_pe:.1f}x" if isinstance(fwd_pe, (int, float)) else 'N/A'}
+- **EV / EBITDA:** {f"{ev_ebitda:.1f}x" if isinstance(ev_ebitda, (int, float)) else 'N/A'}
+- **Operating Margin:** {f"{op_margin * 100:.1f}%" if isinstance(op_margin, (int, float)) else 'N/A'}
+- **Revenue Growth:** {f"{rev_growth * 100:.1f}%" if isinstance(rev_growth, (int, float)) else 'N/A'}
+
+## 3-Sentence Investment Thesis
+{thesis_text or 'N/A'}
+
+## Bull Case & Catalysts
+{bull_text or 'N/A'}
+
+## Bear Case & Thesis Killers
+{bear_text or 'N/A'}
+"""
+        st.download_button(
+            label=f"EXPORT {ticker} RESEARCH NOTE (.MD)",
+            data=report_md,
+            file_name=f"{ticker}_Research_Note_{datetime.now().strftime('%Y-%m-%d')}.md",
+            mime="text/markdown",
+            key=f"dl_{ticker}"
+        )
