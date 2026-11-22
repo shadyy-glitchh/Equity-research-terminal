@@ -208,7 +208,7 @@ strict_official_only = st.sidebar.checkbox(
 value=False
 )
 if st.sidebar.button("REFRESH DATA"):
-st.cache_data.clear()
+    st.cache_data.clear()
 tickers = [t.strip().upper() for t in tickers_input.split(",") if t.strip()]
 @st.cache_data(ttl=86400)
 def get_sec_cik_map():
